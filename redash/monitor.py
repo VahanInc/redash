@@ -72,8 +72,22 @@ def rq_job_ids():
 
 
 def fetch_jobs(job_ids):
-    return_obj = [
-        {
+    return_obj = []
+
+    for job in Job.fetch_many(job_ids, connection=rq_redis_connection):
+        if job is None:
+            continue
+
+        query_id = job.meta.get("query_id")
+
+        # Handle adhoc queries safely
+        if query_id == "adhoc":
+            query_info = {"id": "adhoc", "name": "Adhoc Query"}
+        else:
+            query = models.Query.get_by_id(query_id)
+            query_info = {"id": query_id, "name": query.name if query else None}
+
+        return_obj.append({
             "id": job.id,
             "name": job.func_name,
             "origin": job.origin,
@@ -84,10 +98,7 @@ def fetch_jobs(job_ids):
                "name": models.DataSource.get_by_id(job.meta["data_source_id"]).to_dict()["name"],
                "id": job.meta["data_source_id"]
             },
-            "query": {
-                "name": models.Query.get_by_id(job.meta["query_id"]).name,
-                "id": job.meta["query_id"]
-            },
+            "query": query_info,
             "user":{
                 "name": models.User.get_by_id(job.meta["user_id"]).to_dict()["name"],
                 "id": job.meta["user_id"]
@@ -96,13 +107,10 @@ def fetch_jobs(job_ids):
                 "name": models.Organization.get_by_id(job.meta["org_id"]).name,
                 "id": job.meta["org_id"]
             }
-        }
-        for job in Job.fetch_many(job_ids, connection=rq_redis_connection)
-        if job is not None
-    ]
-    
+        })
+
     models.db.session.commit()
-    
+
     return return_obj
 
 
