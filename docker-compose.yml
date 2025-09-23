@@ -10,6 +10,15 @@ x-redash-service: &redash-service
 #    - .:/app
   env_file:
     - .env
+
+# Shared resource anchor for long-running queries
+x-long-running-resources: &long-running-resources
+  deploy:
+    resources:
+      limits:
+        memory: 2G
+        cpus: '0.5'
+
 x-redash-environment: &redash-environment
   REDASH_LOG_LEVEL: "INFO"
   REDASH_REDIS_URL: "redis://redis:6379/0"
@@ -45,8 +54,191 @@ services:
     environment:
       <<: *redash-environment
     restart: unless-stopped
-  worker_scheduled_queries:
+  worker_scheduled_queries_1:
     <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_2:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_3:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_4:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_5:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_6:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_7:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_8:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_9:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_10:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_11:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_12:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_13:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_14:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      PYTHONUNBUFFERED: 0
+      QUEUES: scheduled_queries
+    restart: unless-stopped
+  worker_scheduled_queries_15:
+    <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -112,8 +304,119 @@ services:
       WORKERS_COUNT: ${WORKERS_COUNT}
       PYTHONUNBUFFERED: 0
     restart: unless-stopped
+  worker_queries_6:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_7:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_8:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_9:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_10:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_11:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_12:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_13:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_14:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_queries_15:
+    <<: *redash-service
+    command: dev_worker
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: queries,schemas
+      WORKERS_COUNT: ${WORKERS_COUNT}
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
   worker_long_queries_1:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -126,6 +429,7 @@ services:
     restart: unless-stopped
   worker_long_queries_2:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -138,6 +442,7 @@ services:
     restart: unless-stopped
   worker_long_queries_3:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -150,6 +455,7 @@ services:
     restart: unless-stopped
   worker_long_queries_4:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -162,6 +468,137 @@ services:
     restart: unless-stopped
   worker_long_queries_5:
     <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_6:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_7:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_8:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_9:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_10:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_11:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_12:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_13:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_14:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_15:
+    <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -202,6 +639,7 @@ services:
       - "host.docker.internal:host-gateway"
     ports:
       - "15432:5432"
+    command: postgres -c 'max_connections=250'
 #    command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"
     restart: unless-stopped
     environment:
