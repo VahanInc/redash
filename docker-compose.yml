@@ -251,6 +251,7 @@ services:
     restart: unless-stopped
   worker_queries_1:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -262,6 +263,7 @@ services:
     restart: unless-stopped
   worker_queries_2:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -273,6 +275,7 @@ services:
     restart: unless-stopped
   worker_queries_3:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -284,6 +287,7 @@ services:
     restart: unless-stopped
   worker_queries_4:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -295,6 +299,7 @@ services:
     restart: unless-stopped
   worker_queries_5:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -306,6 +311,7 @@ services:
     restart: unless-stopped
   worker_queries_6:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -317,6 +323,7 @@ services:
     restart: unless-stopped
   worker_queries_7:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -328,6 +335,7 @@ services:
     restart: unless-stopped
   worker_queries_8:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -339,6 +347,7 @@ services:
     restart: unless-stopped
   worker_queries_9:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -350,6 +359,7 @@ services:
     restart: unless-stopped
   worker_queries_10:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -361,6 +371,7 @@ services:
     restart: unless-stopped
   worker_queries_11:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -372,6 +383,7 @@ services:
     restart: unless-stopped
   worker_queries_12:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -383,6 +395,7 @@ services:
     restart: unless-stopped
   worker_queries_13:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -394,6 +407,7 @@ services:
     restart: unless-stopped
   worker_queries_14:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -405,6 +419,7 @@ services:
     restart: unless-stopped
   worker_queries_15:
     <<: *redash-service
+    <<: *long-running-resources
     command: dev_worker
     depends_on:
       - server
@@ -597,6 +612,110 @@ services:
       PYTHONUNBUFFERED: 0
     restart: unless-stopped
   worker_long_queries_15:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_16:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_17:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_18:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_19:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_20:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_21:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_22:
+    <<: *redash-service
+    <<: *long-running-resources
+    command: dev_worker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    environment:
+      <<: *redash-environment
+      QUEUES: long_queries
+      PYTHONUNBUFFERED: 0
+    restart: unless-stopped
+  worker_long_queries_23:
     <<: *redash-service
     <<: *long-running-resources
     command: dev_worker
